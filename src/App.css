@@ -1,60 +1,92 @@
 /* src/App.css */
+
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
   background-color: transparent;
   color: #333;
+  overflow: hidden;
+}
+
+/* Make the about and contact page content visible */
+.about, .contact{
+    background-color: white;
+    padding: 2em;
+    border-radius: 1em;
+    margin-top: 2em;
 }
 
 .App {
-  text-align: center; /* Center text within the App container */
+  text-align: center;
   padding: 20px;
-  /* Add max-width and margin for centering on larger screens */
-  max-width: 800px; /* Or whatever width you prefer */
-  margin: 0 auto;  /* Center horizontally */
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  /* Remove max-width and margin, let it take full width */
+  max-width: none;
+  margin: 0;
 }
 
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: white; /* Add this line */
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3; /* Ensure it's above other content */
+    margin: 0; /* Remove default margins */
+    padding: 0.5rem 1rem; /* Add some padding */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    color: white;
+    border-radius: 0.5rem;
 }
 
-button {
+/* Position the UI container (for the button) */
+.ui-container {
+  position: absolute;
+  top: 1rem; /* Adjust as needed */
+  right: 1rem; /* Adjust as needed */
+  z-index: 2; /* Above the presentation, below the modal */
+}
+
+/* Style the button */
+.show-commands-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 10px 20px;
-  margin: 10px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.show-commands-button:hover {
   background-color: #0056b3;
+    color: white;
 }
 
 .listening {
-  background-color: #d4edda;
+  background-color: rgba(143, 188, 143, 0.8);
   border-color: #c3e6cb;
-  color: #155724;
-}
-
-p {
-  margin-bottom: 1em;
 }
 
 .presentation {
-  max-width: 800px; /* Consistent with App's max-width */
-  margin: 0 auto;    /* Center horizontally */
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Add to presentation */
-  overflow: hidden;       /* Important for transitions */
-  position: relative;     /* For positioning slide content */
+  /* Remove max-width and margin, let slides handle positioning */
+  max-width: none;
+  margin: 0;
+  padding: 0; /* Remove padding */
+  background-color: transparent; /* Make presentation background transparent */
+  box-shadow: none; /* Remove box-shadow */
+  overflow: hidden;
+  position: relative;
+    height: 100vh; /* Add this to take full viewport height */
+
 }
 
 .presentation img {
@@ -64,28 +96,51 @@ p {
   margin: 0 auto 20px;
 }
 
-/* Add styles for the slides (will be used for transitions) */
 .slide {
-  width: 100%;
-  height: 100%; /* Ensure slides take up the full presentation area */
-  position: absolute; /* Position absolutely within the relative parent */
-  left: 0;
-  top: 0;
-  opacity: 0;         /* Start hidden */
-  transition: opacity 0.5s ease; /* Smooth opacity transition */
+    width: 100%;
+    height: 100%; /* Ensure slides take full height */
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
   display: flex;
   flex-direction: column;
-  align-items: center; /*Center the content*/
+  align-items: center;
+    justify-content: center; /* Add this to vertically center content */
+    padding: 20px;       /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in width/height */
+
+}
+  /* Style for slide title */
+.slide-title {
+  position: absolute;
+  top: 1rem;  /* Position at the top */
+  left: 1rem; /* Position at the left */
+  z-index: 3;   /* Above the slide content */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 }
 
 .slide.active {
-  opacity: 1; /* Make the active slide visible */
-  position: relative;
-  z-index: 2;
+  opacity: 1;
+    z-index: 2;
 }
-
-/* src/App.css */
-/* ... (other styles) ... */
+/* Style for processing indicator */
+.processing-indicator {
+  position: absolute;
+  bottom: 1rem; /* Position at the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue */
+  animation: pulse 1.5s infinite;
+  z-index: 3; /* Ensure it's above other content */
+}
 
 .modal-overlay {
   position: fixed;
@@ -108,20 +163,59 @@ p {
   max-width: 80%;
   max-height: 80%;
   overflow: auto;
+    position: relative;
 }
 
-/* Style for the command list items */
 .command-item {
-  text-align: left; /* Right-align the text within each list item */
+  text-align: left;
 }
 
 /* Add these styles for the video background */
 #bg-video {
-  position: fixed; /* Fixed position */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Cover the entire viewport */
-  z-index: -1; /* Place the video *behind* the content */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
+ /* --- Animation Classes --- */
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.5s ease forwards;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* --- End Animation Classes --- */

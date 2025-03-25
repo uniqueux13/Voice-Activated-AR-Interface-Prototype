@@ -7,8 +7,10 @@
     <title>Vite + React + TS</title>
   </head>
   <body>
-    <video id="bg-video" autoplay muted playsinline></video>
-
+    <video id="bg-video" autoplay muted loop playsinline>
+      <source src="/walking.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
