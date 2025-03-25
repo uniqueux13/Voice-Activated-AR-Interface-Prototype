@@ -1,0 +1,127 @@
+/* src/App.css */
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: #333;
+}
+
+.App {
+  text-align: center; /* Center text within the App container */
+  padding: 20px;
+  /* Add max-width and margin for centering on larger screens */
+  max-width: 800px; /* Or whatever width you prefer */
+  margin: 0 auto;  /* Center horizontally */
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.listening {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+.presentation {
+  max-width: 800px; /* Consistent with App's max-width */
+  margin: 0 auto;    /* Center horizontally */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add to presentation */
+  overflow: hidden;       /* Important for transitions */
+  position: relative;     /* For positioning slide content */
+}
+
+.presentation img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* Add styles for the slides (will be used for transitions) */
+.slide {
+  width: 100%;
+  height: 100%; /* Ensure slides take up the full presentation area */
+  position: absolute; /* Position absolutely within the relative parent */
+  left: 0;
+  top: 0;
+  opacity: 0;         /* Start hidden */
+  transition: opacity 0.5s ease; /* Smooth opacity transition */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*Center the content*/
+}
+
+.slide.active {
+  opacity: 1; /* Make the active slide visible */
+  position: relative;
+  z-index: 2;
+}
+
+/* src/App.css */
+/* ... (other styles) ... */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+/* Style for the command list items */
+.command-item {
+  text-align: left; /* Right-align the text within each list item */
+}
+
+/* Add these styles for the video background */
+#bg-video {
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire viewport */
+  z-index: -1; /* Place the video *behind* the content */
+}
