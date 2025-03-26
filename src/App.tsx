@@ -19,33 +19,30 @@ const slides: Slide[] = [
     {
       title: 'Exploring Voice UI: An AR Concept',
       content: 'Goal: Understand the Web Speech API and experiment with basic voice commands in a web-based simulation of an AR interface. This is a learning exercise, not a polished UI. Built with React, TypeScript, & Vite.',
-      imagePath: '/concept-sketch.png',
+      imagePath: '/tools-used.png',
       animationClass: 'fade-in',
     },
     {
       title: 'Initial Layout Concept',
       content: 'Considering an AR overlay, the user\'s main view shouldn\'t be blocked. I explored placing the core content in a defined panel on the left, simulating a secondary display within the field of view.',
-      // Suggestion: A simple diagram showing the layout idea
       imagePath: '/layout-idea.png',
-      animationClass: 'fade-in', // Changed from slide-in for simplicity unless you prefer specific slide-ins
+      animationClass: 'fade-in',
     },
     {
       title: 'Handling Voice Commands',
       content: 'Implemented the Web Speech API to capture speech. The "Start Listening" button initiates capture. This API provides the foundation for speech recognition in the browser. (API Docs: developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)',
-      imagePath: '/web-speech-api-logo.svg',
+      imagePath: '/web-speech-api-logo.png',
       animationClass: 'fade-in',
     },
     {
       title: 'Feedback Considerations',
-      content: 'How does the user know the command was heard or is processing? Added the "Last Command" display for immediate confirmation. The pulsing dot is a very simple processing indicator. Designing subtle, effective feedback for AR is a key challenge.',
-      // Suggestion: Simple diagram showing input -> processing -> output/feedback
+      content: 'How does the user know the command was heard or is processing? Added the "Last Command" display for immediate confirmation.',
       imagePath: '/feedback-loop.png',
       animationClass: 'fade-in',
     },
     {
       title: 'Under the Hood: Basic Logic',
       content: 'Once speech is transcribed, how does it trigger an action? A JavaScript function checks the text for keywords ("next", "back", "show", etc.) and calls the corresponding function (e.g., changing the slide).',
-      // Suggestion: Simplified flowchart: Voice Input -> Text -> Keyword Check -> Action
       imagePath: '/logic-flow.png',
       animationClass: 'fade-in',
     },
@@ -58,9 +55,9 @@ const slides: Slide[] = [
     },
     {
       title: 'Learnings & Next Steps',
-      content: 'This was a valuable first step into VUI using web tech. Key learning: Web Speech API is accessible, but context-awareness and truly seamless AR interaction are complex challenges! Next steps could involve better error handling, more natural language processing, or exploring WebXR.',
+      content: 'This was a valuable first step into VUI using web tech. Key learning: Web Speech API is accessible, but context-awareness and truly seamless AR interaction are complex challenges! Next steps could involve better UI design, incorporating AI, or exploring WebXR.',
       // Suggestion: An icon representing learning or future steps
-      imagePath: '/learning-icon.svg',
+      imagePath: '/learning.png',
       animationClass: 'fade-in',
     },
   ];
