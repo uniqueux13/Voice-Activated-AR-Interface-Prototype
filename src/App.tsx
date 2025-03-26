@@ -32,6 +32,8 @@ const commands = [
     { command: 'hide commands', description: 'Hides the available voice commands' },
     { command: 'hide presentation', description: 'Hides the project details view.' },
     { command: 'show presentation', description: 'Shows the project details view.' },
+    { command: 'presentation small', description: 'Resize presentation to default (left side).' }, 
+    { command: 'presentation large', description: 'Resize presentation to large (centered).' },
 ];
 
 const App: React.FC = () => {
@@ -40,6 +42,7 @@ const App: React.FC = () => {
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
     const [isCommandsVisible, setIsCommandsVisible] = useState(false); // Renamed state
     const [isPresentationVisible, setIsPresentationVisible] = useState(true);
+    const [presentationSizeMode, setPresentationSizeMode] = useState<'small' | 'large'>('small');
 
     const goToNextSlide = () => {
         setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -84,6 +87,15 @@ const App: React.FC = () => {
             console.log('Unknown command:', command);
         }
 
+        if (lowerCaseCommand === 'presentation small') { // Add this block
+            setPresentationSizeMode('small');
+        } else if (lowerCaseCommand === 'presentation large') { // Add this block
+            setPresentationSizeMode('large');
+        } else {
+            console.log('Unknown command:', command);
+            // Maybe set an error state or provide feedback
+        }
+
         setLastCommand(command);
 
         setTimeout(() => {
@@ -119,12 +131,12 @@ const App: React.FC = () => {
 
             {/* Conditionally render the presentation based on state */}
             {isPresentationVisible && (
-                 <div className="presentation">
-                    <Presentation
-                        slides={slides}
-                        currentSlideIndex={currentSlideIndex}
-                    />
-                 </div>
+                 <div className={`presentation ${presentationSizeMode === 'large' ? 'large' : ''}`}>
+                 <Presentation
+                     slides={slides}
+                     currentSlideIndex={currentSlideIndex}
+                 />
+              </div>
             )}
 
             {/* Routes for About/Contact (outside the conditional presentation) */}
