@@ -81,6 +81,7 @@ const App: React.FC = () => {
     const [isCommandsVisible, setIsCommandsVisible] = useState(false); // Renamed state
     const [isPresentationVisible, setIsPresentationVisible] = useState(true);
     const [presentationSizeMode, setPresentationSizeMode] = useState<'small' | 'large'>('small');
+    const [showInitialPrompt, setShowInitialPrompt] = useState(true);
 
     const goToNextSlide = () => {
         setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -100,8 +101,12 @@ const App: React.FC = () => {
     };
 
     const processCommand = (command: string) => {
+        if (showInitialPrompt) { // Hide prompt on first command processing
+            setShowInitialPrompt(false);
+        }
         setIsProcessing(true);
         const lowerCaseCommand = command.toLowerCase().trim();
+        console.log('Processing command:', lowerCaseCommand);
 
         if (lowerCaseCommand.includes('change background color to')) {
             const color = lowerCaseCommand.split('change background color to ')[1];
@@ -143,7 +148,14 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <h1>Voice-Activated AR Interface Simulation</h1>
+           <h1>Voice-Activated AR Interface Concept</h1>
+            {/* Initial Prompt - Add This */}
+            {showInitialPrompt && (
+                <p className="initial-prompt">
+                    Press the 'Start Listening' button and say 'Show Commands'
+                </p>
+            )}
+
             <p className="last-command">{lastCommand}</p>
 
             <div className="ui-container"> {/* Keep this div, even if empty for now */}

@@ -374,3 +374,27 @@ margin-bottom: 1em;
   /* ... existing styles ... */
   z-index: 1;
 }
+
+.initial-prompt {
+  position: absolute;
+  top: 2.5rem; /* Adjust this value to position below h1 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3; /* Ensure it's visible */
+  background-color: rgba(17, 25, 40, 0.75); /* Similar to button or choose another */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Add a subtle fade-in animation */
+  opacity: 0; /* Start hidden */
+  animation: fadeInPrompt 0.5s 0.5s ease forwards; /* Fade in after 0.5s delay */
+}
+
+/* Keyframe for the prompt fade-in */
+@keyframes fadeInPrompt {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
