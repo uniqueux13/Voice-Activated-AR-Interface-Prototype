@@ -14,15 +14,56 @@ interface Slide {
     animationClass?: string;
 }
 
+// Revised slide content from a UX exploration perspective
 const slides: Slide[] = [
-    { title: 'Voice-Activated AR Interface Prototype', content: 'This project demonstrates a minimal, voice-controlled UI built with React and the Web Speech API.', imagePath: '/slide1.jpg', animationClass: 'fade-in' },
-    { title: 'Minimalist Design', content: 'AR interfaces require a minimalist design to avoid overwhelming the user.  UI elements are placed in the peripheral vision to keep the central field of view clear.', imagePath: '/peripheral-ui.png', animationClass: 'fade-in' },
-    { title: 'Voice as Primary Input', content: 'Voice control enables hands-free interaction, essential for wearable devices. The Web Speech API provides the foundation for speech recognition.', imagePath: '/voice-icon.svg', animationClass: 'fade-in' },
-    { title: 'Clear Visual Feedback', content: 'Subtle but clear visual cues confirm user commands and system status.  This project uses button highlighting and a "Processing..." indicator.', imagePath: '/feedback-example.gif', animationClass: 'fade-in' },
-    { title: 'Under the Hood: Command Parsing', content: "The `processCommand` function uses string matching and regular expressions to interpret voice commands and trigger the appropriate actions.", imagePath: '/command-parsing-diagram.png', animationClass: 'fade-in' },
-    { title: 'Built Using', content: 'React, TypeScript, Vite, Web Speech API, Netlify, GitHub', imagePath: '/tech-logos.png', animationClass: 'fade-in' },
-    { title: 'Future Directions', content: 'Potential extensions include gesture control, more sophisticated voice commands, and integration with WebXR for a true AR experience.', imagePath: '/future-concept.jpg', animationClass: 'fade-in' },
-];
+    {
+      title: 'Exploring Voice UI: An AR Concept',
+      content: 'Goal: Understand the Web Speech API and experiment with basic voice commands in a web-based simulation of an AR interface. This is a learning exercise, not a polished UI. Built with React, TypeScript, & Vite.',
+      imagePath: '/concept-sketch.png',
+      animationClass: 'fade-in',
+    },
+    {
+      title: 'Initial Layout Concept',
+      content: 'Considering an AR overlay, the user\'s main view shouldn\'t be blocked. I explored placing the core content in a defined panel on the left, simulating a secondary display within the field of view.',
+      // Suggestion: A simple diagram showing the layout idea
+      imagePath: '/layout-idea.png',
+      animationClass: 'fade-in', // Changed from slide-in for simplicity unless you prefer specific slide-ins
+    },
+    {
+      title: 'Handling Voice Commands',
+      content: 'Implemented the Web Speech API to capture speech. The "Start Listening" button initiates capture. This API provides the foundation for speech recognition in the browser. (API Docs: developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)',
+      imagePath: '/web-speech-api-logo.svg',
+      animationClass: 'fade-in',
+    },
+    {
+      title: 'Feedback Considerations',
+      content: 'How does the user know the command was heard or is processing? Added the "Last Command" display for immediate confirmation. The pulsing dot is a very simple processing indicator. Designing subtle, effective feedback for AR is a key challenge.',
+      // Suggestion: Simple diagram showing input -> processing -> output/feedback
+      imagePath: '/feedback-loop.png',
+      animationClass: 'fade-in',
+    },
+    {
+      title: 'Under the Hood: Basic Logic',
+      content: 'Once speech is transcribed, how does it trigger an action? A JavaScript function checks the text for keywords ("next", "back", "show", etc.) and calls the corresponding function (e.g., changing the slide).',
+      // Suggestion: Simplified flowchart: Voice Input -> Text -> Keyword Check -> Action
+      imagePath: '/logic-flow.png',
+      animationClass: 'fade-in',
+    },
+    {
+      title: 'Tech Stack Used',
+      content: 'This experiment was built using: React, TypeScript, Vite, Web Speech API, CSS, Netlify (for deployment), and GitHub (for version control).',
+      // Suggestion: Keep the tech logos image
+      imagePath: '/tech-logos.png',
+      animationClass: 'fade-in',
+    },
+    {
+      title: 'Learnings & Next Steps',
+      content: 'This was a valuable first step into VUI using web tech. Key learning: Web Speech API is accessible, but context-awareness and truly seamless AR interaction are complex challenges! Next steps could involve better error handling, more natural language processing, or exploring WebXR.',
+      // Suggestion: An icon representing learning or future steps
+      imagePath: '/learning-icon.svg',
+      animationClass: 'fade-in',
+    },
+  ];
 
 const commands = [
     { command: 'next', description: 'Go to the next concept.' },
@@ -138,6 +179,13 @@ const App: React.FC = () => {
                  />
               </div>
             )}
+
+             {/* Branding Element - Add This */}
+             <div className="branding-container">
+                <img src="/unique-ux-logo.png" alt="Unique UX Logo" className="logo" />
+                <span className="brand-name">Unique UX</span>
+            </div>
+            {/* End Branding Element */}
 
             {/* Routes for About/Contact (outside the conditional presentation) */}
             <Routes>

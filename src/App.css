@@ -242,13 +242,6 @@ margin-bottom: 1em;
   overflow-y: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-  /* --- Add Animation Styles --- */
-  transform: translateX(100%); /* Start off-screen */
-  transition: transform 0.3s ease-in-out; /* Animate transform */
-}
-
-.commands-panel.visible {
-  transform: translateX(0); /* Bring on-screen */
 }
 
 .commands-panel h3 {
@@ -340,4 +333,44 @@ margin-bottom: 1em;
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
+}
+
+/* --- Branding Styles (Bottom Right) --- */
+
+.branding-container {
+  position: absolute; /* Position relative to the .App container */
+  bottom: 1rem;      /* Distance from bottom */
+  left: 1rem;       /* Distance from right */
+  z-index: 3;        /* Above presentation/slides, potentially below modal if overlapping */
+  display: flex;     /* Align logo and text horizontally */
+  align-items: center; /* Center items vertically */
+  background-color: rgba(17, 25, 40, 0.6); /* Match other UI elements */
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.3rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.branding-container .logo {
+  height: 25px; /* Adjust logo size as needed */
+  width: auto;   /* Maintain aspect ratio */
+  margin-right: 0.5rem; /* Space between logo and text */
+}
+
+.branding-container .brand-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #eee; /* Light text color */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Subtle shadow */
+}
+
+/* --- Ensure other z-indexes are appropriate --- */
+/* Make sure .commands-panel has a higher z-index if it needs to overlap */
+.commands-panel {
+  /* ... existing styles ... */
+  z-index: 100; /* Keep this high */
+}
+
+.slide.active {
+  /* ... existing styles ... */
+  z-index: 1;
 }
