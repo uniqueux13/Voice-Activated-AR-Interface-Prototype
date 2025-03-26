@@ -15,11 +15,11 @@ interface Slide {
 }
 
 const slides: Slide[] = [
-    { title: 'Voice-Activated AR Interface Prototype', content: 'This project demonstrates a minimal, voice-controlled UI designed for wearable displays, built with React, TypeScript, Vite, and the Web Speech API.', imagePath: '/slide1.jpg', animationClass: 'fade-in' },
-    { title: 'Minimalist Design', content: 'AR interfaces require a minimalist design to avoid overwhelming the user.  UI elements are placed in the peripheral vision to keep the central field of view clear.', imagePath: '/peripheral-ui.png', animationClass: 'slide-in-right' },
-    { title: 'Voice as Primary Input', content: 'Voice control enables hands-free interaction, essential for wearable devices. The Web Speech API provides the foundation for speech recognition.', imagePath: '/voice-icon.svg', animationClass: 'pulse' },
+    { title: 'Voice-Activated AR Interface Prototype', content: 'This project demonstrates a minimal, voice-controlled UI built with React and the Web Speech API.', imagePath: '/slide1.jpg', animationClass: 'fade-in' },
+    { title: 'Minimalist Design', content: 'AR interfaces require a minimalist design to avoid overwhelming the user.  UI elements are placed in the peripheral vision to keep the central field of view clear.', imagePath: '/peripheral-ui.png', animationClass: 'fade-in' },
+    { title: 'Voice as Primary Input', content: 'Voice control enables hands-free interaction, essential for wearable devices. The Web Speech API provides the foundation for speech recognition.', imagePath: '/voice-icon.svg', animationClass: 'fade-in' },
     { title: 'Clear Visual Feedback', content: 'Subtle but clear visual cues confirm user commands and system status.  This project uses button highlighting and a "Processing..." indicator.', imagePath: '/feedback-example.gif', animationClass: 'fade-in' },
-    { title: 'Under the Hood: Command Parsing', content: "The `processCommand` function uses string matching and regular expressions to interpret voice commands and trigger the appropriate actions.", imagePath: '/command-parsing-diagram.png', animationClass: 'slide-in-left' },
+    { title: 'Under the Hood: Command Parsing', content: "The `processCommand` function uses string matching and regular expressions to interpret voice commands and trigger the appropriate actions.", imagePath: '/command-parsing-diagram.png', animationClass: 'fade-in' },
     { title: 'Built Using', content: 'React, TypeScript, Vite, Web Speech API, Netlify, GitHub', imagePath: '/tech-logos.png', animationClass: 'fade-in' },
     { title: 'Future Directions', content: 'Potential extensions include gesture control, more sophisticated voice commands, and integration with WebXR for a true AR experience.', imagePath: '/future-concept.jpg', animationClass: 'fade-in' },
 ];
@@ -30,6 +30,8 @@ const commands = [
     { command: 'go to [topic]', description: 'Go to a specific concept (e.g., "go to voice control").' },
     { command: 'show commands', description: 'Display the available voice commands.' },
     { command: 'hide commands', description: 'Hides the available voice commands' },
+    { command: 'hide presentation', description: 'Hides the project details view.' },
+    { command: 'show presentation', description: 'Shows the project details view.' },
 ];
 
 const App: React.FC = () => {
@@ -37,6 +39,7 @@ const App: React.FC = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
     const [isCommandsVisible, setIsCommandsVisible] = useState(false); // Renamed state
+    const [isPresentationVisible, setIsPresentationVisible] = useState(true);
     const navigate = useNavigate();
 
     const goToNextSlide = () => {
@@ -71,9 +74,13 @@ const App: React.FC = () => {
             const topic = lowerCaseCommand.split('go to ')[1];
             goToSlide(topic);
         } else if (lowerCaseCommand === 'show commands') {
-            setIsCommandsVisible(true); // Show the commands
+            setIsCommandsVisible(true); 
         } else if (lowerCaseCommand === 'hide commands') {
-            setIsCommandsVisible(false); // Hide the commands
+            setIsCommandsVisible(false); 
+        } else if (lowerCaseCommand === 'hide presentation') { 
+            setIsPresentationVisible(false);
+        } else if (lowerCaseCommand === 'show presentation') { 
+            setIsPresentationVisible(true);
         } else {
             console.log('Unknown command:', command);
         }
@@ -87,16 +94,17 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
+            <h1>Voice-Activated AR Interface Prototype</h1>
             <p className="last-command">{lastCommand}</p>
 
-            <div className="ui-container">
-              {/* Remove the "Show Commands" button */}
+            <div className="ui-container"> {/* Keep this div, even if empty for now */}
+                {/* Button was removed, container can stay or go */}
             </div>
             <SpeechRecognitionComponent onResult={processCommand} />
 
             {isProcessing && <div className="processing-indicator"></div>}
 
-            {/* Conditionally render the command list */}
+            {/* Command Panel remains conditional */}
             {isCommandsVisible && (
                 <div className="commands-panel">
                     <h3>Available Commands:</h3>
@@ -110,16 +118,20 @@ const App: React.FC = () => {
                 </div>
             )}
 
+            {/* Conditionally render the presentation based on state */}
+            {isPresentationVisible && (
+                 <div className="presentation">
+                    <Presentation
+                        slides={slides}
+                        currentSlideIndex={currentSlideIndex}
+                    />
+                 </div>
+            )}
+
+            {/* Routes for About/Contact (outside the conditional presentation) */}
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <Presentation
-                            slides={slides}
-                            currentSlideIndex={currentSlideIndex}
-                        />
-                    }
-                />
+                {/* Route for presentation is handled by the conditional rendering above */}
+                 <Route path="/" element={null} /> {/* Add this line to satisfy react router*/}
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
             </Routes>
