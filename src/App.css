@@ -31,7 +31,7 @@ body {
 /* --- Main Title Styling --- */
 
 h1 {
-  font-size: 2.5em;
+  font-size: 1em;
   margin: 0; /* Remove default margin */
   padding: 0.5rem 1rem;
   background-color: rgba(17, 25, 40, 0.75); /* Semi-transparent black */
@@ -102,7 +102,7 @@ margin-bottom: 1em;
   position: absolute;
   top: 2.5rem; /* Your existing value */
   left: 0;      /* Your existing value */
-  width: 25%;   /* Your existing value ('small' width) */
+  width: 500px;   /* Your existing value ('small' width) */
   height: 100%; /* Your existing value */
   display: flex;
   flex-direction: column;
