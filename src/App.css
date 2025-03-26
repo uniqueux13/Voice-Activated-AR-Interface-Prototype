@@ -34,7 +34,7 @@ h1 {
   font-size: 2.5em;
   margin: 0; /* Remove default margin */
   padding: 0.5rem 1rem;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  background-color: rgba(17, 25, 40, 0.75); /* Semi-transparent black */
   color: white;
   border-radius: 0.5rem;
   position: absolute; /* Position absolutely */
@@ -58,7 +58,7 @@ display: none;
   top: 1rem;
   left: 1rem;
   z-index: 3;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(17, 25, 40, 0.75);
   color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
@@ -75,7 +75,7 @@ display: none;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background-color: rgba(0, 123, 255, 0.8);
+  background-color: rgba(17, 25, 40, 0.75);
   animation: pulse 1.5s infinite;
   z-index: 3;
 }
@@ -127,7 +127,7 @@ margin-bottom: 1em;
   top: 1.1rem;        /*  Distance from top of the *slide* */
   left: 1rem;       /*  Distance from left of the *slide* */
   z-index: 2;       /*  Above the slide content, below other UI */
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(17, 25, 40, 0.75);
   color: white;
   padding: 0.25rem 0.5rem; /* Reduced padding */
   border-radius: 0.25rem;
@@ -168,7 +168,7 @@ margin-bottom: 1em;
   object-fit: contain;
   margin-bottom: 0.5rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(17, 25, 40, 0.75);;
 }
 /* Keep Animation classes */
 
@@ -180,7 +180,7 @@ margin-bottom: 1em;
   right: 0;
   width: 300px; /* Adjust width as needed */
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(17, 25, 40, 0.9);
   color: white;
   padding: 20px;
   z-index: 100; /* Above everything else */
@@ -219,9 +219,6 @@ margin-bottom: 1em;
 
 .speech-button:hover {
   background-color: rgba(0, 100, 200, 0.8); /* Darker blue on hover */
-}
-
-.speech-button:active {
 }
 
 .speech-button.listening {

@@ -59,7 +59,6 @@ function getSpeechRecognitionConstructor(): { new(): SpeechRecognition } | null 
 
 const SpeechRecognitionComponent: React.FC<Props> = ({ onResult }) => {
     const [isListening, setIsListening] = useState(false);
-    const [transcript, setTranscript] = useState('');
     const [error, setError] = useState('');
     const recognitionRef = useRef<SpeechRecognition | null>(null);
 
@@ -135,7 +134,6 @@ const SpeechRecognitionComponent: React.FC<Props> = ({ onResult }) => {
 
     const startListening = () => {
         if (recognitionRef.current && !isListening) {
-            setTranscript('');
             setError('');
             try {
                 recognitionRef.current.start();

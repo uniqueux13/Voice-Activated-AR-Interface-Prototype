@@ -1,6 +1,6 @@
 // src/App.tsx
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, } from 'react';
+import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import SpeechRecognitionComponent from './components/SpeechRecognitionComponent';
 import Presentation from './pages/Presentation';
 import About from './pages/About';
@@ -40,7 +40,6 @@ const App: React.FC = () => {
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
     const [isCommandsVisible, setIsCommandsVisible] = useState(false); // Renamed state
     const [isPresentationVisible, setIsPresentationVisible] = useState(true);
-    const navigate = useNavigate();
 
     const goToNextSlide = () => {
         setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -94,7 +93,7 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <h1>Voice-Activated AR Interface Prototype</h1>
+            <h1>Voice-Activated AR Interface Simulation</h1>
             <p className="last-command">{lastCommand}</p>
 
             <div className="ui-container"> {/* Keep this div, even if empty for now */}
